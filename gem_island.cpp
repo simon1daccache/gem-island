@@ -3,28 +3,66 @@
 #include<iomanip>
 using namespace std;
 
-int main() {
-int n,d,r,gems;
-double total=0;
-int possibilities;
+void display(double total, int possibilities);
 
-cin>> n , d , r ;
+int main() 
 
-gems=n+d;
-if(gems%2!=0)
 {
-possibilities=n*n;
-for(int i=0;i<n;i++)
-
-    total+=(double)(gems-1-i)*n;
+    int n,d,r,gems;
+    double total=0;
+    int possibilities=0;
     
-}
-else { 
-    possibilities=n*n+1;
-    total=  (double)((gems-1)*(n*n)+(r*r));
-}
+    do
+    {
+        cin>> n >> d >> r ;
+        
+    }while (n<1 || d>500 || r<1 || r>n);
+    
+    
+    gems=n+d;
+    
+    if(n==1 && d!=0)
+    {
+        total=gems;
+        possibilities=n;
+        display(total,possibilities);
+        return 0;
+    }
+    else if(d==0)
+    {
+        total=r;
+        possibilities=1;
+        display(total,possibilities);
+        return 0;
+    }
+    
+    else
+    {
+        
+        
+        if(gems%2!=0)
+        {
+            possibilities=n*n;
+            
+            for(int i=0;i<n;i++)
+        
+                total+=(double)(gems-1-i)*n;
+            
+        }
+        else 
+        { 
+            possibilities=n*n+1;
+            total=  (double)((gems-1)*(n*n)+(r*r));
+        }
+        
+    }
+    
+    
+    display( total, possibilities);
+    return 0;
 
-printf("%.6lf\n", (double)((total)/possibilities));
-return 0;
-
+}
+void display(double total, int possibilities)
+{
+    printf("%.7lf\n", (double)((total)/possibilities));
 }
