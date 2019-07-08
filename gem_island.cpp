@@ -5,6 +5,7 @@
 using namespace std;
 
 void display(double total, int possibilities);
+int factorial(int n);
 
 int main() 
 
@@ -12,6 +13,7 @@ int main()
     int n,d,r,gems;
     double total=0;
     int possibilities=0;
+    
     
     do
     {
@@ -43,27 +45,41 @@ int main()
         
         if(gems%2!=0)
         {
-            possibilities=n*n;
+            possibilities=n*n+1;
             
             for(int i=0;i<n;i++)
         
-                total+=(double)(gems-1-i)*n;
+                total+=(float)(gems-1-i)*n;
             
         }
         else 
         { 
             possibilities=n*n+1;
-            total=  (double)((gems-1)*(n*n)+(r*r));
+            total=  (float)((gems-1)*(n*n)+(r*r));
         }
         
     }
     
     
-    display( total, possibilities);
+    display( total, possibilities); 
     return 0;
 
 }
 void display(double total, int possibilities)
 {
-    printf("%.7lf\n", (double)((total)/possibilities));
+    printf("%.7lf\n", (float)((total)/possibilities));
+}
+
+int factorial(int n)
+{
+    if(n==0)
+    {
+        return(1);
+    }
+    else if(n==1)
+    {
+        return(1);
+    }
+    else
+        return(n*factorial(n-1));
 }
